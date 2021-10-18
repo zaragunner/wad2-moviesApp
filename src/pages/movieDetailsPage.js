@@ -1,6 +1,7 @@
-import React from "react";
+import React, {useState, useEffect}  from "react";
 import MovieHeader from "../components/headerMovie/";
 import MovieDetails from "../components/movieDetails/";
+import { getMovie, getMovieImages } from "../api/tmdb-api";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import GridList from "@material-ui/core/GridList";
@@ -20,9 +21,16 @@ const useStyles = makeStyles((theme) => ({
 
 const MoviePage = (props) => {
   const classes = useStyles();
-  const movie = props.movie;
-  const images = props.images;
+  const { id } = props.match.params;
+  const [movie, setMovie] = useState(null);
+  const [images, setImages] = useState([]);
 
+  useEffect(() => {
+    getMovieImages(id).then((images) => {
+      setImages(images);
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <>
       {movie ? (
