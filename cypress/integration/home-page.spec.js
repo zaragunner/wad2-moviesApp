@@ -83,23 +83,23 @@ describe("Home Page ", () => {
            });
          });
 
-         it("should display movies with the specified genre and title", () => {
-            const selectedGenreId = 35;
-            const selectedGenreText = "Comedy";
-            const matchingMoviesGenre = filterByGenre(movies, selectedGenreId);
-            console.log("Matching movies genre   = " , matchingMoviesGenre)
-            const searchString = "Free"
-            let matchingMovies = filterByTitle(matchingMoviesGenre, searchString);
-            console.log(matchingMovies)
-            cy.get("#genre-select").click();
-            cy.get("li").contains(selectedGenreText).click();
-            cy.get("#filled-search").clear().type(searchString); // Enter m in text box
-            cy.get(".MuiCardHeader-content").should(
-              "have.length",
-              matchingMovies.length
+        //  it("should display movies with the specified genre and title", () => {
+        //     const selectedGenreId = 35;
+        //     const selectedGenreText = "Comedy";
+        //     const matchingMoviesGenre = filterByGenre(movies, selectedGenreId);
+        //     console.log("Matching movies genre   = " , matchingMoviesGenre)
+        //     const searchString = "Free"
+        //     let matchingMovies = filterByTitle(matchingMoviesGenre, searchString);
+        //     console.log(matchingMovies)
+        //     cy.get("#genre-select").click();
+        //     cy.get("li").contains(selectedGenreText).click();
+        //     cy.get("#filled-search").clear().type(searchString); // Enter m in text box
+        //     cy.get(".MuiCardHeader-content").should(
+        //       "have.length",
+        //       matchingMovies.length
 
-            );
-            });
+        //     );
+        //     });
        });
      });
    });
