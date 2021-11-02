@@ -44,18 +44,16 @@ describe("Navigation", () => {
         cy.get("h3").contains("Favourite Movies");
       });
     });
-    describe(
-      "when the viewport is a mobile",
-      {
-        viewportHeight: 896,
-        viewportWidth: 414,
-      },
-      () => {
-        it("should allow navigation to the Favourites page from the dropdown menu", () => {
-          cy.get("header").find("button").click();
-          cy.get("li").eq(1).click();
-          cy.url().should("include", `/favorites`);
-          cy.get("h3").contains("Favourite Movies");
+    describe("From the Favorites page", () => {
+        beforeEach(() => {
+          cy.get("button[aria-label='add to favorites']").eq(0).click();
+          cy.get("button[aria-label='add to favorites']").eq(1).click();
+          cy.get("header").find(".MuiToolbar-root").find("button").eq(1).click();
+        });
+        it("should navigate to the movies detail page and change the browser URL", () => {
+          cy.get(".MuiCardActions-root").eq(0).contains("More Info").click();
+          cy.url().should("include", `/movies/${movies[0].id}`);
+          cy.get("h3").contains(movies[0].title);
         });
       });
   });
