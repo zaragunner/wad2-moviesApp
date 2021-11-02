@@ -53,6 +53,16 @@ describe("Home Page ", () => {
              cy.wrap($card).find("p").contains(matchingMovies[index].title);
            });
          });
+         it("should only display movies with XYZ in the title", () => {
+            let searchString = "XYZ";
+            cy.get("#filled-search").clear().type(searchString); // Enter XYZ in text box
+            cy.get(".MuiCardHeader-content").should(
+                'not.exist',
+                
+            )
+                    
+           
+          })
        })
        describe("By movie genre" ,() => {
        });
