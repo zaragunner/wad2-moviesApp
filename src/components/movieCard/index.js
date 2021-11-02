@@ -13,6 +13,7 @@ import StarRateIcon from "@material-ui/icons/StarRate";
 import IconButton from "@material-ui/core/IconButton";
 import Grid from "@material-ui/core/Grid";
 import img from '../../images/film-poster-placeholder.png'
+import {Link} from "react-router-dom"
 import Avatar from "@material-ui/core/Avatar";
 
 const useStyles = makeStyles({
@@ -75,9 +76,11 @@ export default function MovieCard(props) {
       <IconButton aria-label="add to favorites" onClick={handleAddToFavorite}>
         <FavoriteIcon color="primary" fontSize="large" />
     </IconButton>
+        <Link to={`/movies/${movie.id}`}>
         <Button variant="outlined" size="medium" color="primary">
           More Info ...
         </Button>
+        </Link>
       </CardActions>
     </Card>
   );
