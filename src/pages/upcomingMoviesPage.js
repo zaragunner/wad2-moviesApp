@@ -13,11 +13,19 @@ const UpcomingPage = (props) => {
   }, []);
 
   return (
+   
     <PageTemplate
       title='Upcoming Movies'
       movies={movies}
-     
-    />
-  );
+      action={(movie) => {
+        return (
+          <>
+            
+          </>
+   );
+  }}
+/>
+);
 };
+
 export default UpcomingPage;
