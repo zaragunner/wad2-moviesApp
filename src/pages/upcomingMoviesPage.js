@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PageTemplate from '../components/templateMovieListPage'
 import { getUpcomingMovies } from "../api/tmdb-api";
-
+import AddToWatchListIcon from "../components/cardIcons/addToWatchList";
 const UpcomingPage = (props) => {
   const [movies, setMovies] = useState([]);
  
@@ -20,7 +20,7 @@ const UpcomingPage = (props) => {
       action={(movie) => {
         return (
           <>
-            
+            <AddToWatchListIcon/>
           </>
    );
   }}
