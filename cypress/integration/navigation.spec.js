@@ -38,10 +38,10 @@ describe("Navigation", () => {
 
   describe("The site header", () => {
     describe("when the viewport is desktop scale", () => {
-      it("should allow navigation to the Favourites page from the link", () => {
+      it("should allow navigation to the favorites page from the link", () => {
         cy.get("header").find(".MuiToolbar-root").find("button").eq(1).click();
         cy.url().should("include", `/favorites`);
-        cy.get("h3").contains("Favourite Movies");
+        cy.get("h3").contains("Favorite Movies");
       });
     });
     describe("From the Favorites page", () => {
@@ -69,7 +69,7 @@ describe("Navigation", () => {
           cy.get("h3").contains(movies[0].title);
         });
       });
-      describe("The forward/backward navigation works between the Favourite movies page and the movie details page", () => {
+      describe("The forward/backward navigation works between the favorite movies page and the movie details page", () => {
         beforeEach(() => {
             cy.get(".MuiCardActions-root").eq(0).contains("More Info").click();
         cy.url().should("include", `/movies/${movies[0].id}`);
@@ -77,14 +77,14 @@ describe("Navigation", () => {
 
         cy.get("header").find(".MuiToolbar-root").find("button").eq(1).click();
         cy.url().should("include", `/favorites`);
-        cy.get("h3").contains("Favourite Movies");
+        cy.get("h3").contains("Favorite Movies");
         })
-        it("should navigate backward and forward between the movies detail page and the favourites page.", () => {
+        it("should navigate backward and forward between the movies detail page and the favorites page.", () => {
         cy.get("button[aria-label='go back'").click();
         cy.get("h3").contains("Overview");
 
         cy.get("button[aria-label='go forward'").click();
-        cy.get("h3").contains("Favourite Movies");
+        cy.get("h3").contains("Favorite Movies");
 
 
         });

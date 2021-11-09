@@ -103,9 +103,8 @@ describe("Home Page ", () => {
        });
     
 
-   describe("Selecting favourite", () => {
-   it(" It should display an avatar at the top of the movie card and add it to the Favourite movies page", () => {
-       cy.get
+   describe("Selecting favorite", () => {
+   it(" It should display an avatar at the top of the movie card and add it to the favorite movies page", () => {
        cy.get(`[aria-label="add to favorites"]`).eq(1).click()
        cy.get("header").find(".MuiToolbar-root").find("button").eq(1).click();
    })
