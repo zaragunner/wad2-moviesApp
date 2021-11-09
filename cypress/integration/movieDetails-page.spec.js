@@ -39,7 +39,7 @@ describe("Movie Details Page", () => {
 
 
     it("should display the movie's image on the left", () => {
-        cy.get(".MuiGridListTile-imgFullHeight")
+        cy.get("img").should('have.css', 'text-align', 'left')
 
       });
     });

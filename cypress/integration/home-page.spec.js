@@ -83,32 +83,29 @@ describe("Home Page ", () => {
            });
          });
 
-        //  it("should display movies with the specified genre and title", () => {
-        //     const selectedGenreId = 35;
-        //     const selectedGenreText = "Comedy";
-        //     const matchingMoviesGenre = filterByGenre(movies, selectedGenreId);
-        //     console.log("Matching movies genre   = " , matchingMoviesGenre)
-        //     const searchString = "Free"
-        //     let matchingMovies = filterByTitle(matchingMoviesGenre, searchString);
-        //     console.log(matchingMovies)
-        //     cy.get("#genre-select").click();
-        //     cy.get("li").contains(selectedGenreText).click();
-        //     cy.get("#filled-search").clear().type(searchString); // Enter m in text box
-        //     cy.get(".MuiCardHeader-content").should(
-        //       "have.length",
-        //       matchingMovies.length
-
-        //     );
-        //     });
+         describe("By movie genre and title", () => {
+          it("should display movies with the specified genre and title substring only", () => {
+            const selectedGenreId = 35;
+            const selectedGenreText = "Comedy";
+            const genreMatchingMovies = filterByGenre(movies, selectedGenreId);
+            let searchString = "o";
+            let matchingMovies = filterByTitle(genreMatchingMovies, searchString);
+            cy.get("#filled-search").clear().type(searchString); // Enter m in text box 
+            cy.get("#genre-select").click();
+            cy.get("li").contains(selectedGenreText).click();
+            cy.get(".MuiCardHeader-content").should(
+              "have.length",
+              matchingMovies.length
+            );
+            cy.get(".MuiCardHeader-content").each(($card, index) => {
+              cy.wrap($card).find("p").contains(matchingMovies[index].title);
+            });
+          });
+        });
        });
     
 
-   describe("Selecting favorite", () => {
-   it(" It should display an avatar at the top of the movie card and add it to the favorite movies page", () => {
-       cy.get(`[aria-label="add to favorites"]`).eq(1).click()
-       cy.get("header").find(".MuiToolbar-root").find("button").eq(1).click();
-   })
-})
+   
 
     });
 });
