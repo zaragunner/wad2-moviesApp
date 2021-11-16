@@ -45,7 +45,7 @@ build_jobX:
 exercise_job:
   stage: build
   only:
-    -main
+    - main
   script:
     - echo "Test exercise stage"
 
