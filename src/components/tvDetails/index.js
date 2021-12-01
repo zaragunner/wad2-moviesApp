@@ -53,18 +53,21 @@ const TvDetails = ({ show }) => {  // Don't miss this!
           <li key={g.name}>
             <Chip label={g.name} className={classes.chip} />
           </li>
+          
         ))}
-      </Paper>
+        </Paper>
+        <Paper component="ul" className={classes.root}>
+         <Chip  className={classes.chip} label={`Number of seasons: ${show.seasons.length}`} />
+        <Chip className={classes.chip} label={`Number of episodes: ${show.number_of_episodes}`}/>
+       
+           </Paper>
+     
       <Paper component="ul" className={classes.root}>
-        {/* <Chip icon={<AccessTimeIcon />} label={`${movie.runtime} min.`} /> */}
-        {/* <Chip
-          icon={<MonetizationIcon />}
-          label={`${show.revenue.toLocaleString()}`}
-        /> */}
         <Chip
           icon={<StarRate />}
-          label={`${show.vote_average} (${show.vote_count}`}
+          label={`${show.vote_average} `}
         />
+        <Chip label={`Number of votes: ${show.vote_count}`} />
         <Chip label={`First air date: ${show.first_air_date}`} />
       </Paper>
 
