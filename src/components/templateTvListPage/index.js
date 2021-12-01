@@ -36,13 +36,7 @@ function TvListPageTemplate({ shows, action }) {
         {/* <Header title={title} /> */}
       </Grid>
       <Grid item container spacing={5}>
-        <Grid key="find" item xs={12} sm={6} md={4} lg={3} xl={2}>
-          {/* <FilterCard
-            onUserInput={handleChange}
-            titleFilter={nameFilter}
-            genreFilter={genreFilter}
-          /> */}
-        </Grid>
+       
         <TvList action={action} shows={shows}></TvList> </Grid>
     </Grid>
   );

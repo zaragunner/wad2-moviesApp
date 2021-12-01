@@ -5,7 +5,7 @@ import Spinner from '../components/spinner'
 import {getTvShows} from '../api/tmdb-api'
 // import AddToFavoritesIcon from '../components/cardIcons/addToFavorites'
 
-const  TvPage = (props) => {
+const  TvList = (props) => {
   const {  data, error, isLoading, isError }  = useQuery('discoverTvShows', getTvShows)
 
   if (isLoading) {
@@ -33,4 +33,4 @@ const  TvPage = (props) => {
   );
 };
 
-export default TvPage;
+export default TvList;
