@@ -26,12 +26,15 @@ const SiteHeader = ( { history }) => {
   const open = Boolean(anchorEl);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
-
+  let authenticated = Boolean;
+authenticated = false;
   const menuOptions = [
     { label: "Home", path: "/" },
     { label: "Favorites", path: "/movies/favorites" },
     { label: "Upcoming", path: "/movies/upcoming" },
     { label: "TV Shows", path: "/tv" },
+    { label: "Top Rated" , path : "/toprated"},
+    { label : "TV Listings", path : "/listings"}
   ];
 
   const handleMenuSelect = (pageURL) => {
@@ -41,6 +44,13 @@ const SiteHeader = ( { history }) => {
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
+
+  const setAuthenticated = () => {
+    authenticated = !authenticated;
+    console.log(authenticated)
+  };
+
+ 
 
   return (
     <>
@@ -63,6 +73,7 @@ const SiteHeader = ( { history }) => {
                 >
                   <MenuIcon />
                 </IconButton>
+                
                 <Menu
                   id="menu-appbar"
                   anchorEl={anchorEl}
@@ -89,7 +100,9 @@ const SiteHeader = ( { history }) => {
                 </Menu>
               </>
             ) : (
+            
               <>
+              <button onClick={setAuthenticated} color="inherit"> {authenticated.toString()} </button>
                 {menuOptions.map((opt) => (
                   <Button
                     key={opt.label}
@@ -100,6 +113,7 @@ const SiteHeader = ( { history }) => {
                   </Button>
                 ))}
               </>
+            
             )}
         </Toolbar>
       </AppBar>

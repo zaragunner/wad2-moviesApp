@@ -2,11 +2,11 @@ import React from "react";
 import PageTemplate from "../components/templateTvListPage";
 import { useQuery } from 'react-query'
 import Spinner from '../components/spinner'
-import {getTvShows} from '../api/tmdb-api'
+import {getTvListings} from '../api/tmdb-api'
 // import AddToFavoritesIcon from '../components/cardIcons/addToFavorites'
 
 const  TvList = (props) => {
-  const {  data, error, isLoading, isError }  = useQuery('discoverTvShows', getTvShows)
+  const {  data, error, isLoading, isError }  = useQuery('Tv Show Listings', getTvListings)
 
   if (isLoading) {
     return <Spinner />
@@ -24,7 +24,7 @@ const  TvList = (props) => {
 
   return (
     <PageTemplate
-      name="Discover Tv Shows"
+     name="Tv Shows Airing Today"
       shows={shows}
     //   action={(movie) => {
     //     return <AddToFavoritesIcon movie={movie} />
