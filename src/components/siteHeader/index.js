@@ -67,9 +67,10 @@ const SiteHeader = ( { history }) => {
           <Typography variant="h6" className={classes.title}>
             All you ever wanted to know about Movies!
           </Typography>
+          
             {isMobile ? (
               <>
-              
+            
                 <IconButton
                   aria-label="menu"
                   aria-controls="menu-appbar"
@@ -79,7 +80,8 @@ const SiteHeader = ( { history }) => {
                 >
                   <MenuIcon />
                 </IconButton>
-                <button onClick={setStatus} color="inherit"> {buttonText} </button>
+                <button  onClick={setStatus} color="inherit"> {buttonText} </button>
+            
                 <Menu
                   id="menu-appbar"
                   anchorEl={anchorEl}
@@ -104,11 +106,14 @@ const SiteHeader = ( { history }) => {
                     </MenuItem>
                   ))}
                 </Menu>
+                
               </>
             ) : (
             
               <>
               <button onClick={setStatus} color="inherit"> {buttonText} </button>
+              {authenticated ? (
+                <>
                 {menuOptions.map((opt) => (
                   <Button
                     key={opt.label}
@@ -118,6 +123,11 @@ const SiteHeader = ( { history }) => {
                     {opt.label}
                   </Button>
                 ))}
+                </>
+              ) : (
+                <>
+                </>
+              )}
               </>
             
             )}
