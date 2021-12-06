@@ -23,11 +23,12 @@ const useStyles = makeStyles((theme) => ({
 const SiteHeader = ( { history }) => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
+  const [authenticated , setAuthenticated] = useState(false)
   const open = Boolean(anchorEl);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
-  let authenticated = Boolean;
-authenticated = false;
+
+ 
   const menuOptions = [
     { label: "Home", path: "/" },
     { label: "Favorites", path: "/movies/favorites" },
@@ -45,11 +46,15 @@ authenticated = false;
     setAnchorEl(event.currentTarget);
   };
 
-  const setAuthenticated = () => {
-    authenticated = !authenticated;
+  const setStatus = () => {
+    setAuthenticated(!authenticated);
     console.log(authenticated)
   };
 
+  var buttonText = "Login"
+  if (authenticated ){
+    buttonText = "Logout"
+  }
  
 
   return (
@@ -64,6 +69,7 @@ authenticated = false;
           </Typography>
             {isMobile ? (
               <>
+              
                 <IconButton
                   aria-label="menu"
                   aria-controls="menu-appbar"
@@ -73,7 +79,7 @@ authenticated = false;
                 >
                   <MenuIcon />
                 </IconButton>
-                
+                <button onClick={setStatus} color="inherit"> {buttonText} </button>
                 <Menu
                   id="menu-appbar"
                   anchorEl={anchorEl}
@@ -102,7 +108,7 @@ authenticated = false;
             ) : (
             
               <>
-              <button onClick={setAuthenticated} color="inherit"> {authenticated.toString()} </button>
+              <button onClick={setStatus} color="inherit"> {buttonText} </button>
                 {menuOptions.map((opt) => (
                   <Button
                     key={opt.label}
