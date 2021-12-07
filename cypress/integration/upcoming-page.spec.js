@@ -122,7 +122,14 @@ const filterByGenre = (movieList, genreId) =>
         });
        });
     
-      
+       describe("Viewing Movie Details", () => {
+        it("should display the movies details on a new page", () => {
+            cy.get(".MuiCardActions-root").eq(0).contains("More Info").click();
+            cy.get("h3").contains(movieTitle);
+            cy.url().should("include", `movies/${movieId}`)
+        })
+       })
+
    
 
     });
