@@ -70,7 +70,7 @@ const SiteHeader = ( { history }) => {
           
             {isMobile ? (
               <>
-            
+             <Button  onClick={setStatus} color="inherit"> {buttonText} </Button>
                 <IconButton
                   aria-label="menu"
                   aria-controls="menu-appbar"
@@ -80,8 +80,9 @@ const SiteHeader = ( { history }) => {
                 >
                   <MenuIcon />
                 </IconButton>
-                <button  onClick={setStatus} color="inherit"> {buttonText} </button>
-            
+               
+                {authenticated ? (
+                <>
                 <Menu
                   id="menu-appbar"
                   anchorEl={anchorEl}
@@ -108,10 +109,16 @@ const SiteHeader = ( { history }) => {
                 </Menu>
                 
               </>
+            )
+          : (
+            <>
+            </>
+          )}
+          </>
             ) : (
             
               <>
-              <button onClick={setStatus} color="inherit"> {buttonText} </button>
+              <Button  onClick={setStatus}  color="inherit" > {buttonText} </Button>
               {authenticated ? (
                 <>
                 {menuOptions.map((opt) => (
@@ -138,4 +145,7 @@ const SiteHeader = ( { history }) => {
   );
 };
 
+<style>
+
+</style>
 export default withRouter(SiteHeader);

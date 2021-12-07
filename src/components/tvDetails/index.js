@@ -10,6 +10,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import TvReviews from "../TvReviews"
+import {Link} from "react-router-dom"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -79,6 +80,19 @@ const TvDetails = ({ show }) => {  // Don't miss this!
           <li key={g.name}>
             <Chip label={g.name} className={classes.chip} />
           </li>
+        ))}
+      </Paper>
+
+      <Paper component="ul" className={classes.root}>
+        <li>
+          <Chip label="Seasons" className={classes.chip} color="primary" />
+        </li>
+        {show.seasons.map((g) => (
+          <Link to={`/tv/${show.id}/${g.season_number}`}>
+          <li key={g.name}>
+            <Chip label={g.name} className={classes.chip} />
+          </li>
+          </Link>
         ))}
       </Paper>
 

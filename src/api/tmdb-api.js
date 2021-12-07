@@ -176,3 +176,27 @@ export const getMovie = (args) => {
       });
     };
       
+
+    export const getEpisodes = (args) => {
+      console.log(args)
+      const [, showPart] = args.queryKey
+      const [, , , seasonPart] = args.queryKey
+      console.log(showPart)
+      console.log(seasonPart)
+      const { showid } = showPart;
+      const {seasonno} = seasonPart;
+    //   console.log("SHOWID" + showid)
+      return fetch(
+        `https://api.themoviedb.org/3/tv/${showid}/season/${seasonno}?api_key=${process.env.REACT_APP_TMDB_KEY}`
+      ).then( (response) => {
+        if (!response.ok) {
+          throw new Error(response.json().message);
+        }
+        return response.json();
+       
+    
+      })
+      .catch((error) => {
+        throw error
+     });
+    };
