@@ -122,7 +122,7 @@ const filterByGenre = (movieList, genreId) =>
         });
        });
     
-       describe("Viewing Movie Details", () => {
+    describe("Viewing Movie Details", () => {
         it("should display the movies details on a new page", () => {
             cy.get(".MuiCardActions-root").eq(0).contains("More Info").click();
             cy.get("h3").contains(movieTitle);
@@ -130,6 +130,24 @@ const filterByGenre = (movieList, genreId) =>
         })
        })
 
-   
+describe("Viewing Movie Reviews", () => {
+        it("should display the moviereviews in an overlay", () => {
+          cy.get(".MuiCardActions-root").eq(0).contains("More Info").click();
+            cy.get("h3").contains(movieTitle);
+            cy.url().should("include", `movies/${movieId}`)
+            cy.get("header").find(".MuiToolbar-root").find("button").click();
+            cy.get(".MuiGrid-container").find("button").click();
 
     });
+
+    it("should direct to individual movie review page when 'full review' is clicked", () =>{
+      cy.get(".MuiCardActions-root").eq(0).contains("More Info").click();
+      cy.get("h3").contains(movieTitle);
+      cy.url().should("include", `movies/${movieId}`)
+      cy.get("header").find(".MuiToolbar-root").find("button").click();
+      cy.get(".MuiGrid-container").find("button").click();
+      cy.get(".MuiTable-root").find("a").eq(0).click();
+      cy.get(".MuiGrid-grid-xs-9").find("p").eq(0).should("contain", "Review By")
+ })
+  });
+});
