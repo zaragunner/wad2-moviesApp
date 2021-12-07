@@ -29,6 +29,10 @@ const useStyles = makeStyles((theme) => ({
     bottom: theme.spacing(2),
     right: theme.spacing(2),
   },
+  season : {
+    cursor: 'pointer',
+    margin: theme.spacing(0.5),
+  }
 }));
 
 
@@ -88,9 +92,9 @@ const TvDetails = ({ show }) => {  // Don't miss this!
           <Chip label="Seasons" className={classes.chip} color="primary" />
         </li>
         {show.seasons.map((g) => (
-          <Link to={`/tv/${show.id}/${g.season_number}`}>
-          <li key={g.name}>
-            <Chip label={g.name} className={classes.chip} />
+          <Link to={`/tv/${show.id}/${g.season_number}`} key={g.name} className={classes.season}>
+          <li>
+            <Chip label={g.name} className={classes.season} />
           </li>
           </Link>
         ))}

@@ -62,19 +62,18 @@ if (season){
   return (
     <>
      <Paper component="div" className={classes.root}>
-     <Typography variant="h6" component="p" className={classes.typographyTitle} >
+     <Typography variant="h6" component="div" className={classes.typographyTitle} >
       <h2> Season  {season.season_number}:</h2>
        </Typography>
        <div>
-        <li>
+     
           <Chip label="Episodes" className={classes.chip} color="primary" />
-        </li>
-        <li>
+        
+     
          {season.episodes.map((c) => (
-             <span> 
-               <li>
-                 
-                 <Typography variant="h6" component="p" className={classes.typography} >
+             <span key={c.air_date}> 
+           
+                 <Typography variant="h6" component="div" className={classes.typography} >
                     <div>
                       <h3> 
                       Ep No: {c.episode_number}  - {c.name}
@@ -84,32 +83,18 @@ if (season){
                       {c.overview}
                     </div>
                     
-                 <li>
+               
                  <Chip label={`Air Date : ${c.air_date}`}/>
-                 </li>
+              
       </Typography>
            
                 
-                 </li>
+                
                  </span>
              ))}
-          </li>
+        
           </div>
           </Paper>
-
-
-
-          {/* <Paper component="ul" className={classes.root}>
-        <li>
-          <Chip label="Seasons" className={classes.chip} color="primary" />
-        </li>
-        {season.episodes[0].guest_stars.map((g) => (
-          <li key={g.name}>
-            <Chip label={g.name} className={classes.chip} />
-          </li>
-     
-        ))}
-      </Paper> */}
 
     </>
   );
