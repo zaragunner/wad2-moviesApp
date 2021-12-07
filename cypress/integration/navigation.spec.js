@@ -27,6 +27,7 @@ describe("Navigation", () => {
   });
   beforeEach(() => {
     cy.visit("/");
+    cy.get("header").find(".MuiToolbar-root").find("button").click();
   });  
   describe("From the home page", () => {
     it("should navigate to the movie details page and change browser URL", () => {
@@ -39,7 +40,8 @@ describe("Navigation", () => {
   describe("The site header", () => {
     describe("when the viewport is desktop scale", () => {
       it("should allow navigation to the favorites page from the link", () => {
-        cy.get("header").find(".MuiToolbar-root").find("button").eq(1).click();
+      
+        cy.get("header").find(".MuiToolbar-root").find("button").eq(2).click();
         cy.url().should("include", `/favorites`);
         cy.get("h3").contains("Favorite Movies");
       });
@@ -48,7 +50,7 @@ describe("Navigation", () => {
         beforeEach(() => {
           cy.get("button[aria-label='add to favorites']").eq(0).click();
           cy.get("button[aria-label='add to favorites']").eq(1).click();
-          cy.get("header").find(".MuiToolbar-root").find("button").eq(1).click();
+          cy.get("header").find(".MuiToolbar-root").find("button").eq(2).click();
         });
         it("should navigate to the movies detail page and change the browser URL", () => {
           cy.get(".MuiCardActions-root").eq(0).contains("More Info").click();
@@ -71,7 +73,7 @@ describe("Navigation", () => {
       });
       it("should navigate backward and forward between the favourites page and the movies detail page.", () => {
         cy.get("button[aria-label='add to favorites']").eq(0).click();
-        cy.get("header").find(".MuiToolbar-root").find("button").eq(1).click();
+        cy.get("header").find(".MuiToolbar-root").find("button").eq(2).click();
   
         cy.get(".MuiCardActions-root").eq(0).contains("More Info").click();
         cy.get("button[aria-label='go back'").click();
