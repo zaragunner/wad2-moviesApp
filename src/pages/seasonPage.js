@@ -33,6 +33,12 @@ const useStyles = makeStyles((theme) => ({
       padding: '12px',
       margin: '16px',
       background: '#f6f6f6'
+    },
+    typographyTitle :{
+      padding: '6px',
+      margin: '1px',
+      alignContent: 'center',
+      width: '100%'
     }
   }));
 
@@ -56,6 +62,9 @@ if (season){
   return (
     <>
      <Paper component="div" className={classes.root}>
+     <Typography variant="h6" component="p" className={classes.typographyTitle} >
+      <h2> Season  {season.season_number}:</h2>
+       </Typography>
        <div>
         <li>
           <Chip label="Episodes" className={classes.chip} color="primary" />
@@ -68,15 +77,13 @@ if (season){
                  <Typography variant="h6" component="p" className={classes.typography} >
                     <div>
                       <h3> 
-                      {c.name}
+                      Ep No: {c.episode_number}  - {c.name}
                       </h3>
                     </div>
                     <div>
                       {c.overview}
                     </div>
-                    <li>
-                 <Chip label={`Episode Number : ${c.episode_number}`}/>
-                 </li>
+                    
                  <li>
                  <Chip label={`Air Date : ${c.air_date}`}/>
                  </li>
