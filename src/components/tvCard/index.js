@@ -32,16 +32,9 @@ export default function TvCard({ show }) {
 
   return (
     <Card className={classes.card}>
-      <CardHeader
+     <CardHeader
       className={classes.header}
-    //   avatar={
-    //     movie.favorite ? (
-    //       <Avatar className={classes.avatar}>
-    //         <FavoriteIcon />
-    //       </Avatar>
-    //     ) : null
-    //   }
-      name={
+      title={
         <Typography variant="h5" component="p">
           {show.name}{" "}
         </Typography>

@@ -1,5 +1,5 @@
 import React from "react"; 
-// import MovieHeader from "../headerMovie";
+import TvHeader from "../headerTv";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import GridList from "@material-ui/core/ImageList";
@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
 
   return (
     <>
-      {/* <MovieHeader movie={movie} /> */}
+      <TvHeader show={show} />
 
       <Grid container spacing={5} style={{ padding: "15px" }}>
         <Grid item xs={3}>

@@ -32,10 +32,8 @@ function TvListPageTemplate({ shows,name, action }) {
 
   return (
     <Grid container className={classes.root}>
-       <Grid item xs={12}>
-     
+        <Grid item xs={12}>
         <Header title={name} />
-     
       </Grid>
       <Grid item container spacing={5}>
       <Grid key="find" item xs={12} sm={6} md={4} lg={3} xl={2}>
