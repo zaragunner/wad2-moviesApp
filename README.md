@@ -99,4 +99,22 @@ Path : path = "/tv/:showid/:seasonno" <br/>
 + Adding a route with more than one parameter being passed in. "/tv/:showid/:seasonno". This required research into caching the query params, to extract both id values.
 
 
+-------------------------------------------
+# Assignment 1 - Agile Software Practice.
+
+## Automated Testing.
+
+### Best test cases.
++  cypress\integration\tvDetails-page.spec.js line 65
++  cypress\integration\tvDetails-page.spec.js line 75
++  cypress\integration\login-button.spec.js   line 10
++  cypress\integration\listing-page.spec.js   line 110
++  cypress\integration\toprated-page.spec.js  line 107
+
+
+## Code Splitting.
+
+<img width="237" alt="image" src="https://user-images.githubusercontent.com/47563922/145631298-560be434-942f-45a9-92c7-24ac2476b16f.png">
+
+
 
