@@ -1,5 +1,5 @@
-import React from "react"; 
-import TvHeader from "../headerTv";
+import React, { useState, lazy, Suspense } from "react";
+// import TvHeader from "../headerTv";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import GridList from "@material-ui/core/ImageList";
@@ -7,6 +7,9 @@ import GridListTile from "@material-ui/core/ImageListItem";
 import { getTvImages } from "../../api/tmdb-api";
 import { useQuery } from "react-query";
 import Spinner from '../spinner'
+
+
+const TvHeader = lazy(() => import("../headerTv"));
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,7 +41,10 @@ const useStyles = makeStyles((theme) => ({
 
   return (
     <>
-      <TvHeader show={show} />
+    <Suspense fallback={<h1>Getting header</h1>}>
+    <TvHeader show={show} />
+      </Suspense>
+    
 
       <Grid container spacing={5} style={{ padding: "15px" }}>
         <Grid item xs={3}>
