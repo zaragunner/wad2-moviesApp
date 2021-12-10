@@ -103,6 +103,20 @@ const filterByGenre = (movieList, genreId) =>
        });
     });
 
+ describe("Movie Card Buttons", () => {
+          it("should add movie to favourites", () => {
+            cy.get("button[aria-label='add to favorites']").eq(0).click();
+            cy.get("button[aria-label='add to favorites']").eq(1).click();
+            cy.get("header").find(".MuiToolbar-root").find("button").click();
+            cy.get("header").find(".MuiToolbar-root").find("button").eq(2).click();
+          }); 
+
+          it("should direct to indivdual movie page", () => {
+            cy.get(".MuiCardActions-root").eq(0).contains("More Info").click();
+            cy.url().should("include", `/movies/${topRated[0].id}`);
+            cy.get("h3").contains(topRated[0].title);
+          }); 
+        });
     });
 
 
