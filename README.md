@@ -17,6 +17,7 @@ This repository contains all Web App Development and Agile labs for CA1.
 + Simple Authentication -> Change button value.
 + Show / Hide nav routes based on Login Status using ternary operator.
 + Season Details Page to find details about specific season of a show.
++ Functionality to add upcoming movies to watchlist. Console logs watchlist.
 
 ## Setup requirements.
 Usual npm install
@@ -65,14 +66,23 @@ Path : path = "/tv/:showid/:seasonno" <br/>
 
 ## App Design.
 ### UI Design.
-
-
-
+<img width="960" alt="image" src="https://user-images.githubusercontent.com/47563922/145612993-d31b8316-50f8-43e5-a224-5ed500a45650.png">
 >Shows list of upcoming movies.
 
-![ ](./images/view.png)
+<img width="954" alt="image" src="https://user-images.githubusercontent.com/47563922/145613199-62d996dd-118a-4aed-a1e0-154c7c27d2c1.png">
+>Shows list of tv shows to discover.
 
->Shows detailed information on a movie. Clicking the 'Reviews' floating action button will display extracts from critic reviews.
+<img width="951" alt="image" src="https://user-images.githubusercontent.com/47563922/145613349-216452db-31d4-427a-a8a3-53dd3674c090.png">
+>Shows list of top rated movies in the TMDB database.
+
+<img width="944" alt="image" src="https://user-images.githubusercontent.com/47563922/145613445-6696a656-69f4-4b56-9005-f775be732a42.png">
+>Shows list of TV Shows airing today.
+
+<img width="950" alt="image" src="https://user-images.githubusercontent.com/47563922/145613610-9c3888d7-a905-4463-9a04-3002a42801ed.png">
+> SHows indivdual tv show details, with new attributes disaplyed.
+
+<img width="948" alt="image" src="https://user-images.githubusercontent.com/47563922/145613816-bd6f122e-3bd6-4e0b-b936-a124cf14700f.png">
+>Shows individual season details, with details displayed for each episode.
 
 ### Routing.
 
