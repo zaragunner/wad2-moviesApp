@@ -65,7 +65,7 @@ describe("Viewing Shows Reviews", () => {
 it("should direct to individual show review page when 'full review' is clicked", () =>{
   cy.get("h3").contains(showName);
   cy.url().should("include", `tv/${showId}`)
-  cy.get("header").find(".MuiToolbar-root").find("button").click();
+
   cy.get(".MuiGrid-container").find("button").click();
   cy.get(".MuiTable-root").find("a").eq(0).click();
   cy.get(".MuiGrid-grid-xs-9").find("p").eq(0).should("contain", "Review By")
