@@ -1,7 +1,4 @@
-let movies;
-const movieId = 568124;
-const movieTitle = 'Encanto' // The movie Venom 
-let reviews;
+let topRated ;
 
 const filterByTitle = (movieList, string) =>
   movieList.filter((m) => m.title.toLowerCase().search(string) !== -1);
@@ -9,48 +6,32 @@ const filterByTitle = (movieList, string) =>
 const filterByGenre = (movieList, genreId) =>
   movieList.filter((m) => m.genre_ids.includes(genreId));
 
-  describe("Upcoming Page ", () => {
+  describe("Top Rated Page ", () => {
     before(() => {
       // Get movies from TMDB and store in movies variable.
       cy.request(
-        `https://api.themoviedb.org/3/movie/upcoming?api_key=${Cypress.env("TMDB_KEY")}&language=en-US&include_adult=false&include_video=false&page=1`
-        
+        `https://api.themoviedb.org/3/movie/top_rated?api_key=${Cypress.env( "TMDB_KEY")}&language=en-US`
       )
         .its("body")    // Take the body of HTTP response from TMDB
         .then((response) => {
-          movies = response.results
+          topRated= response.results
         })
-
-        cy.request(
-            `https://api.themoviedb.org/3movie/${movieId}/?api_key=${Cypress.env(
-              "TMDB_KEY"
-            )}`
-          )
-            .its("body")
-            .then((response) => {
-              // console.log(response);
-              reviews = response.results;
-            });
     })
     beforeEach(() => {
-      cy.visit("/movies/upcoming")
+      cy.visit("/toprated")
     });
-
-    //test to make sure on the correct page
-    //url should include 'movies/upcoming'
-            //h3 header should say Upcoming Movies
-    describe("Base tests", () => {
-    it("should be on the upcoming movies page", () => {
-        cy.url().should("include", `/movies/upcoming`);
-        cy.get("h3").contains("Upcoming Movies");
+      describe("Base test", () => {
+        it("displays page header", () => {
+          cy.get("h3").contains("Top Rated Movies");
+          cy.get("h1").contains("Filter the movies");
+        });
       });
-    });
-    
-    describe("Filtering", () => {
+
+      describe("Filtering", () => {
         describe("By movie title", () => {
-         it("should only display movies with mi in the title", () => {
-           let searchString = "mi";
-           let matchingMovies = filterByTitle(movies, searchString);
+         it("should only display movies with m in the title", () => {
+           let searchString = "m";
+           let matchingMovies = filterByTitle(topRated, searchString);
            console.log(matchingMovies)
            cy.get("#filled-search").clear().type(searchString); // Enter m in text box
            cy.get(".MuiCardHeader-content").should(
@@ -63,7 +44,7 @@ const filterByGenre = (movieList, genreId) =>
          })
          it("should only display movies with o in the title", () => {
            let searchString = "o";
-           let matchingMovies = filterByTitle(movies, searchString);
+           let matchingMovies = filterByTitle(topRated, searchString);
            cy.get("#filled-search").clear().type(searchString); // Enter m in text box
            cy.get(".MuiCardHeader-content").should(
              "have.length",
@@ -77,19 +58,18 @@ const filterByGenre = (movieList, genreId) =>
             let searchString = "XYZ";
             cy.get("#filled-search").clear().type(searchString); // Enter XYZ in text box
             cy.get(".MuiCardHeader-content").should(
-                'not.exist'
+                'not.exist',
+                
             )
+                    
+           
           })
        })
-
-    });
-
-    describe("By movie genre", () => {
+       describe("By movie genre", () => {
         it("should display movies with the specified genre only", () => {
-            //list of genre ids and corresponding categories @ https://www.themoviedb.org/talk/5daf6eb0ae36680011d7e6ee
-           const selectedGenreId = 10751;
-           const selectedGenreText = "Family";
-           const matchingMovies = filterByGenre(movies, selectedGenreId);
+           const selectedGenreId = 35;
+           const selectedGenreText = "Comedy";
+           const matchingMovies = filterByGenre(topRated, selectedGenreId);
            cy.get("#genre-select").click();
            cy.get("li").contains(selectedGenreText).click();
            cy.get(".MuiCardHeader-content").should(
@@ -103,9 +83,9 @@ const filterByGenre = (movieList, genreId) =>
 
          describe("By movie genre and title", () => {
           it("should display movies with the specified genre and title substring only", () => {
-            const selectedGenreId = 878;
-            const selectedGenreText = "Science Fiction";
-            const genreMatchingMovies = filterByGenre(movies, selectedGenreId);
+            const selectedGenreId = 35;
+            const selectedGenreText = "Comedy";
+            const genreMatchingMovies = filterByGenre(topRated, selectedGenreId);
             let searchString = "o";
             let matchingMovies = filterByTitle(genreMatchingMovies, searchString);
             cy.get("#filled-search").clear().type(searchString); // Enter m in text box 
@@ -121,33 +101,22 @@ const filterByGenre = (movieList, genreId) =>
           });
         });
        });
-    
-    describe("Viewing Movie Details", () => {
-        it("should display the movies details on a new page", () => {
-            cy.get(".MuiCardActions-root").eq(0).contains("More Info").click();
-            cy.get("h3").contains(movieTitle);
-            cy.url().should("include", `movies/${movieId}`)
-        })
-       })
-
-describe("Viewing Movie Reviews", () => {
-        it("should display the moviereviews in an overlay", () => {
-          cy.get(".MuiCardActions-root").eq(0).contains("More Info").click();
-            cy.get("h3").contains(movieTitle);
-            cy.url().should("include", `movies/${movieId}`)
-            cy.get("header").find(".MuiToolbar-root").find("button").click();
-            cy.get(".MuiGrid-container").find("button").click();
-
     });
 
-    it("should direct to individual movie review page when 'full review' is clicked", () =>{
-      cy.get(".MuiCardActions-root").eq(0).contains("More Info").click();
-      cy.get("h3").contains(movieTitle);
-      cy.url().should("include", `movies/${movieId}`)
-      cy.get("header").find(".MuiToolbar-root").find("button").click();
-      cy.get(".MuiGrid-container").find("button").click();
-      cy.get(".MuiTable-root").find("a").eq(0).click();
-      cy.get(".MuiGrid-grid-xs-9").find("p").eq(0).should("contain", "Review By")
- })
-  });
-});
+ describe("Movie Card Buttons", () => {
+          it("should add movie to favourites", () => {
+            cy.get("button[aria-label='add to favorites']").eq(0).click();
+            cy.get("button[aria-label='add to favorites']").eq(1).click();
+            cy.get("header").find(".MuiToolbar-root").find("button").click();
+            cy.get("header").find(".MuiToolbar-root").find("button").eq(2).click();
+          }); 
+
+          it("should direct to indivdual movie page", () => {
+            cy.get(".MuiCardActions-root").eq(0).contains("More Info").click();
+            cy.url().should("include", `/movies/${topRated[0].id}`);
+            cy.get("h3").contains(topRated[0].title);
+          }); 
+        });
+    });
+
+
