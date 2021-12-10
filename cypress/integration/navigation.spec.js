@@ -84,4 +84,6 @@ describe("Navigation", () => {
         cy.get("h3").contains(movies[0].title);
       });
     });
+
+    
   });
