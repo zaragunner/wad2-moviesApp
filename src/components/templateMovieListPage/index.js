@@ -18,12 +18,12 @@ function MovieListPageTemplate({ movies, title, action }) {
   const genreId = Number(genreFilter);
 
   let displayedMovies = movies
-    .filter((m) => {
-      return m.title.toLowerCase().search(nameFilter.toLowerCase()) !== -1;
-    })
-    .filter((m) => {
-      return genreId > 0 ? m.genre_ids.includes(genreId) : true;
-    });
+    // .filter((m) => {
+    //   return m.title.toLowerCase().search(nameFilter.toLowerCase()) !== -1;
+    // })
+    // .filter((m) => {
+    //   return genreId > 0 ? m.genre_ids.includes(genreId) : true;
+    // });
 
   const handleChange = (type, value) => {
     if (type === "name") setNameFilter(value);

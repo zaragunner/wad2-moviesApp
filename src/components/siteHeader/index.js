@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+
+import React, { useState , useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -12,6 +13,7 @@ import Menu from "@material-ui/core/Menu";
 import { withRouter } from "react-router-dom";
 import { useTheme } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
+import { AuthContext } from "../../contexts/authContext";
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -20,24 +22,24 @@ const useStyles = makeStyles((theme) => ({
   offset: theme.mixins.toolbar,
 }));
 
-const SiteHeader = ( { history }) => {
+const SiteHeader = ({history}) => {
+  const context = useContext(AuthContext);
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
-  const [authenticated , setAuthenticated] = useState(false)
   const open = Boolean(anchorEl);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
- 
-  const menuOptions = [
+const menuOptions = [
     { label: "Home", path: "/" },
     { label: "Favorites", path: "/movies/favorites" },
     { label: "Upcoming", path: "/movies/upcoming" },
     { label: "TV Shows", path: "/tv" },
-    { label: "Top Rated" , path : "/toprated"},
-    { label : "TV Listings", path : "/listings"}
-  ];
-
+    { label: "Top Rated", path: "/toprated" },
+    { label: "TV Listings", path: "/listings" }
+  ]
+  
+ 
   const handleMenuSelect = (pageURL) => {
     history.push(pageURL);
   };
@@ -46,16 +48,8 @@ const SiteHeader = ( { history }) => {
     setAnchorEl(event.currentTarget);
   };
 
-  const setStatus = () => {
-    setAuthenticated(!authenticated);
-    console.log(authenticated)
-  };
 
-  var buttonText = "Login"
-  if (authenticated ){
-    buttonText = "Logout"
-  }
- 
+
 
   return (
     <>
@@ -67,77 +61,63 @@ const SiteHeader = ( { history }) => {
           <Typography variant="h6" className={classes.title}>
             All you ever wanted to know about Movies!
           </Typography>
-          
-            {isMobile ? (
-              <>
-             <Button  onClick={setStatus} color="inherit"> {buttonText} </Button>
-                <IconButton
-                  aria-label="menu"
-                  aria-controls="menu-appbar"
-                  aria-haspopup="true"
-                  onClick={handleMenu}
-                  color="inherit"
-                >
-                  <MenuIcon />
-                </IconButton>
-               
-                {authenticated ? (
-                <>
-                <Menu
-                  id="menu-appbar"
-                  anchorEl={anchorEl}
-                  anchorOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
-                  }}
-                  keepMounted
-                  transformOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
-                  }}
-                  open={open}
-                  onClose={() => setAnchorEl(null)}
-                >
-                  {menuOptions.map((opt) => (
-                    <MenuItem
-                      key={opt.label}
-                      onClick={() => handleMenuSelect(opt.path)}
-                    >
-                      {opt.label}
-                    </MenuItem>
-                  ))}
-                </Menu>
-                
-              </>
-            )
-          : (
+
+          {isMobile ? (
             <>
-            </>
-          )}
-          </>
-            ) : (
-            
-              <>
-              <Button  onClick={setStatus}  color="inherit" > {buttonText} </Button>
-              {authenticated ? (
-                <>
+
+              <IconButton
+                aria-label="menu"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleMenu}
+                color="inherit"
+              >
+                <MenuIcon />
+              </IconButton>
+
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                open={open}
+                onClose={() => setAnchorEl(null)}
+              >
                 {menuOptions.map((opt) => (
-                  <Button
+                  <MenuItem
                     key={opt.label}
-                    color="inherit"
                     onClick={() => handleMenuSelect(opt.path)}
                   >
                     {opt.label}
-                  </Button>
+                  </MenuItem>
+
                 ))}
-                </>
-              ) : (
-                <>
-                </>
-              )}
-              </>
-            
-            )}
+              </Menu>
+
+
+            </>
+          ) : (
+            <>
+
+
+              {menuOptions.map((opt) => (
+                <Button
+                  key={opt.label}
+                  color="inherit"
+                  onClick={() => handleMenuSelect(opt.path)}
+                >
+                  {opt.label}
+                </Button>
+              ))}
+            </>
+          )}
         </Toolbar>
       </AppBar>
       <div className={classes.offset} />

@@ -1,3 +1,5 @@
+import fetch from 'node-fetch'; 
+
 export const login = (username, password) => {
     return fetch('/api/users', {
         headers: {
@@ -16,4 +18,18 @@ export const signup = (username, password) => {
         method: 'post',
         body: JSON.stringify({ username: username, password: password })
     }).then(res => res.json())
+};
+
+export const getMovies = () => {
+    return fetch(
+       '/api/movies',{headers: {
+         'Authorization': window.localStorage.getItem('token')
+      }
+    }
+    ).then(res => res.json());
+  };
+
+
+export const getUpcomingMovies = () => {
+  return fetch('/tmdb/upcoming')
 };
