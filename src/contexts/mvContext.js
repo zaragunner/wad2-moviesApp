@@ -1,6 +1,6 @@
 import React, { useState, createContext, useEffect, useReducer } from "react";
 import { getMovies } from "../api/movie-api";
-import { getMovie } from "../api/movie-api";
+import { getTopRated } from "../api/movie-api";
 import { getUpcomingMovies } from "../api/movie-api";
 
 export const MvContext = createContext(null);
@@ -24,6 +24,16 @@ const reducer1 = (state, action) => {
   }
 };
 
+const reducer2 = (state, action) => {
+  switch (action.type) {
+    case "load":
+      return {
+              topRated: action.payload.result}
+    default:
+      return state;
+  }
+};
+
 
 
 
@@ -32,6 +42,7 @@ const MoviesContextProvider = props => {
   
   const [state, dispatch] = useReducer(reducer, { movies: []});
   const [state1, dispatch1] = useReducer(reducer1, {  upcomingMovies : []});
+  const [state2, dispatch2] = useReducer(reducer2, {  topRated : []});
   const [authenticated, setAuthenticated] = useState(false);
 
   useEffect(() => {
@@ -48,6 +59,12 @@ const MoviesContextProvider = props => {
     })
   },[]);
 
+  useEffect(() => {
+    getTopRated().then(result => {
+      console.log("UPcoming " , result);
+      dispatch2({ type: "load", payload: {result}});
+    })
+  },[]);
   
 
 
@@ -57,6 +74,7 @@ const MoviesContextProvider = props => {
       value={{
         movies: state.movies,
         upcomingMovies : state1.upcomingMovies,
+        topRated : state2.topRated,
         setAuthenticated
       }}
     >

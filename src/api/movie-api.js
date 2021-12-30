@@ -37,10 +37,18 @@ export const getUpcomingMovies = () => {
 ).then(res => res.json());
 };
 
-// export const getMovie = (id) => {
-//     return fetch('/api/movies/tmdb/movies/:id',{headers: {
-//       'Authorization': window.localStorage.getItem('token')
-//    }
-//   }
-//   ).then(res => res.json());
-//   };
+export const getTopRated = () => {
+    return fetch('/api/movies/tmdb/toprated',{headers: {
+      'Authorization': window.localStorage.getItem('token')
+   }
+  }
+  ).then(res => res.json());
+  };
+
+export const getMovie = () => {
+    return fetch('/api/movies/tmdb/movies/:id',{headers: {
+      'Authorization': window.localStorage.getItem('token')
+   }
+  }
+  ).then(res => res.json());
+  };
