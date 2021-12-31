@@ -46,12 +46,14 @@ export const getTopRated = () => {
   };
 
 export const getMovie = async (id) => {
-    return await fetch(`/api/movies/tmdb/movies/${id}`,{headers: {
+     return await fetch(`/api/movies/tmdb/movies/${id}`,{headers: {
       'Authorization': window.localStorage.getItem('token')
    }
   }
-  ).then(res => console.log(res.json()))
-  };
+  ).then(data => data.json())
+
+
+  }
 
   export const getTvShows = () => {
     return fetch('/api/shows/tmdb/tvshows',{headers: {
