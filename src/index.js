@@ -23,6 +23,7 @@ import PrivateRoute from "./privateRoute";
 import AuthHeader from "./authHeader";
 import SignUpPage from "./pages/signUpPage";
 import MovieProvider from "./contexts/mvContext"
+import TvProvider from "./contexts/tvContext"
 
 //// const TvListings         = lazy(() => import("./pages/tvListingsPage"));
 //// const TvList             = lazy(() => import( "./pages/TvList"));
@@ -58,6 +59,7 @@ const App = () => {
       </Suspense>
       
        <MovieProvider>
+         <TvProvider>
         <MoviesContextProvider>
         {" "}
         <Suspense fallback={<h1>Loading page</h1>}>
@@ -80,6 +82,7 @@ const App = () => {
   </Switch>
   </Suspense>
   </MoviesContextProvider>
+  </TvProvider>
  </MovieProvider>
   </AuthProvider>
       </BrowserRouter>

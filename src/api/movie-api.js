@@ -61,6 +61,14 @@ export const getMovie = async (id) => {
   ).then(res => res.json());
   };
 
+  export const getTvListings = () => {
+    return fetch('/api/shows/tmdb/listings',{headers: {
+      'Authorization': window.localStorage.getItem('token')
+   }
+  }
+  ).then(res => res.json());
+  };
+
 
 
 //   export const getMovie = async (id) =>{
