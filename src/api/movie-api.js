@@ -45,10 +45,33 @@ export const getTopRated = () => {
   ).then(res => res.json());
   };
 
-export const getMovie = () => {
-    return fetch('/api/movies/tmdb/movies/:id',{headers: {
+export const getMovie = async (id) => {
+    return await fetch(`/api/movies/tmdb/movies/${id}`,{headers: {
+      'Authorization': window.localStorage.getItem('token')
+   }
+  }
+  ).then(res => console.log(res.json()))
+  };
+
+  export const getTvShows = () => {
+    return fetch('/api/shows/tmdb/tvshows',{headers: {
       'Authorization': window.localStorage.getItem('token')
    }
   }
   ).then(res => res.json());
   };
+
+
+
+//   export const getMovie = async (id) =>{
+//       const response = await fetch(`/api/movies/tmdb/movies/${id}`,{headers: {
+//         'Authorization': window.localStorage.getItem('token')
+//      }
+//     }
+//     )
+//       const movie  = await response.json();
+//       return movie ;
+//   }
+
+
+ 
