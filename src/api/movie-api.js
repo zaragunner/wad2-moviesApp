@@ -51,8 +51,6 @@ export const getMovie = async (id) => {
    }
   }
   ).then(data => data.json())
-
-
   }
 
   export const getTvShows = () => {
@@ -71,17 +69,13 @@ export const getMovie = async (id) => {
   ).then(res => res.json());
   };
 
-
-
-//   export const getMovie = async (id) =>{
-//       const response = await fetch(`/api/movies/tmdb/movies/${id}`,{headers: {
-//         'Authorization': window.localStorage.getItem('token')
-//      }
-//     }
-//     )
-//       const movie  = await response.json();
-//       return movie ;
-//   }
+  export const getShow = async (id) => {
+    return await fetch(`/api/shows/tmdb/tvshows/${id}`,{headers: {
+     'Authorization': window.localStorage.getItem('token')
+  }
+ }
+ ).then(data => data.json())
+ }
 
 
  

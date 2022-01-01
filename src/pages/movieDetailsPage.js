@@ -4,8 +4,7 @@ import MovieDetails from "../components/movieDetails";
 import PageTemplate from "../components/templateMoviePage";
 // import useMovie from "../hooks/useMovie";
 import { getMovie } from '../api/movie-api'
-import { useQuery } from "react-query";
-import Spinner from '../components/spinner'
+
 
 const  MovieDetailsPage  = (props) => {
   //  HELP ON THIS FROM STACK OVERFLOW  https://stackoverflow.com/questions/42132290/wait-for-react-promise-to-resolve-before-render#:~:text=Add%20a%20comment-,5,for%20functional%20components%20with%20hooks%3A,-function%20App()%20%7B%0A%20%20%20%20%20%20%20%20%0A%20%20%20%20%20%20%20%20%20%20const
