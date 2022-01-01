@@ -18,7 +18,7 @@ const TvDetailsPage = (props) => {
   const getShowDetails = async () => {
     const { id } = props.match.params
     const show = await getShow(id) 
-    console.log("ShOW IS" + show)
+    // console.log("ShOW IS" + show)
     setShow(show)
       setLoading(false);
     

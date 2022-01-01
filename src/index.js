@@ -1,18 +1,18 @@
 import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Redirect, Switch,  } from "react-router-dom";
-import HomePage from "./pages/homePage";
-import MoviePage from "./pages/movieDetailsPage";
-import TvList from "./pages/TvList"
-import TvListings from "./pages/tvListingsPage"
-import TvPage from './pages/tvDetailsPage'
-import TopRatedPage from './pages/topRatedPage'
-import TvReviewPage from './pages/tvReviewPage'
-import FavoriteMoviesPage from "./pages/favoriteMoviesPage"; // NEW
-import MovieReviewPage from "./pages/movieReviewPage";
-import UpcomingMoviesPage from "./pages/upcomingMoviesPage";
-import SeasonPage from "./pages/seasonPage"
-import SiteHeader from './components/siteHeader'
+// import HomePage from "./pages/homePage";
+// import MoviePage from "./pages/movieDetailsPage";
+// import TvList from "./pages/TvList"
+// import TvListings from "./pages/tvListingsPage"
+// import TvPage from './pages/tvDetailsPage'
+// import TopRatedPage from './pages/topRatedPage'
+// import TvReviewPage from './pages/tvReviewPage'
+// import FavoriteMoviesPage from "./pages/favoriteMoviesPage"; // NEW
+// import MovieReviewPage from "./pages/movieReviewPage";
+// import UpcomingMoviesPage from "./pages/upcomingMoviesPage";
+// import SeasonPage from "./pages/seasonPage"
+// import SiteHeader from './components/siteHeader'
 import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from 'react-query/devtools'
 import MoviesContextProvider from "./contexts/moviesContext";
@@ -25,18 +25,18 @@ import SignUpPage from "./pages/signUpPage";
 import MovieProvider from "./contexts/mvContext"
 import TvProvider from "./contexts/tvContext"
 
-//// const TvListings         = lazy(() => import("./pages/tvListingsPage"));
-//// const TvList             = lazy(() => import( "./pages/TvList"));
-//// const HomePage           = lazy(() => import("./pages/homePage"));
-//// const MoviePage          = lazy(() => import("./pages/movieDetailsPage"));
-//// const TvPage             = lazy(() => import ('./pages/tvDetailsPage'));
-//// const TopRatedPage       = lazy(() => import ('./pages/topRatedPage'));
-//// const TvReviewPage       = lazy(() => import ('./pages/tvReviewPage'));
-// const FavoriteMoviesPage = lazy(() => import ("./pages/favoriteMoviesPage"));
-// const MovieReviewPage    = lazy(() => import ("./pages/movieReviewPage"));
-// const UpcomingMoviesPage = lazy(() => import ("./pages/upcomingMoviesPage"));
-// const SeasonPage         = lazy(() => import ("./pages/seasonPage"));
-// const SiteHeader         = lazy(() => import ('./components/siteHeader'));
+const TvListings         = lazy(() => import("./pages/tvListingsPage"));
+const TvList             = lazy(() => import( "./pages/TvList"));
+const HomePage           = lazy(() => import("./pages/homePage"));
+const MoviePage          = lazy(() => import("./pages/movieDetailsPage"));
+const TvPage             = lazy(() => import ('./pages/tvDetailsPage'));
+const TopRatedPage       = lazy(() => import ('./pages/topRatedPage'));
+const TvReviewPage       = lazy(() => import ('./pages/tvReviewPage'));
+const FavoriteMoviesPage = lazy(() => import ("./pages/favoriteMoviesPage"));
+const MovieReviewPage    = lazy(() => import ("./pages/movieReviewPage"));
+const UpcomingMoviesPage = lazy(() => import ("./pages/upcomingMoviesPage"));
+const SeasonPage         = lazy(() => import ("./pages/seasonPage"));
+const SiteHeader         = lazy(() => import ('./components/siteHeader'));
 
 const queryClient = new QueryClient({
   defaultOptions: {

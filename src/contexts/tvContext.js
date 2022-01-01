@@ -28,18 +28,18 @@ const TvContextProvider = props => {
   
   const [state, dispatch] = useReducer(reducer, { shows: []});
   const [state1, dispatch1] = useReducer(reducer1, { listings: []});
-  const [authenticated, setAuthenticated] = useState(false);
+  const [setAuthenticated] = useState(false);
 
   useEffect(() => {
     getTvShows().then(result => {
-      console.log("TvShows  " , result);
+      // console.log("TvShows  " , result);
       dispatch({ type: "load", payload: {result}});
     })
   },[]);
 
   useEffect(() => {
     getTvListings().then(result => {
-      console.log("TvListings  " , result);
+      // console.log("TvListings  " , result);
       dispatch1({ type: "load", payload: {result}});
     })
   },[]);

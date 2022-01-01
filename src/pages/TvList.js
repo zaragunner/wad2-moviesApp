@@ -1,7 +1,7 @@
 import React from "react";
 import PageTemplate from "../components/templateTvListPage";
-import { useQuery } from 'react-query'
-import Spinner from '../components/spinner'
+// import { useQuery } from 'react-query'
+// import Spinner from '../components/spinner'
 // import AddToFavoritesIcon from '../components/cardIcons/addToFavorites'
 
 import { useContext} from 'react';

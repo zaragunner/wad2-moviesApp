@@ -152,11 +152,11 @@ export const getMovie = (args) => {
       
 
     export const getEpisodes = (args) => {
-      console.log(args)
+      // console.log(args)
       const [, showPart] = args.queryKey
       const [, , , seasonPart] = args.queryKey
-      console.log(showPart)
-      console.log(seasonPart)
+      // console.log(showPart)
+      // console.log(seasonPart)
       const { showid } = showPart;
       const {seasonno} = seasonPart;
     //   console.log("SHOWID" + showid)

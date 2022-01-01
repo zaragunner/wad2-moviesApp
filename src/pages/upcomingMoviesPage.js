@@ -1,8 +1,8 @@
 import React from "react";
 import PageTemplate from '../components/templateMovieListPage'
 import AddToWatchListIcon from "../components/cardIcons/addToWatchList";
-import { useQuery } from 'react-query'
-import Spinner from '../components/spinner';
+// import { useQuery } from 'react-query'
+// import Spinner from '../components/spinner';
 import { useContext} from 'react';
 import { MvContext } from '../contexts/mvContext';
 

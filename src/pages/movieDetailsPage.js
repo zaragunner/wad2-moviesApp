@@ -18,7 +18,7 @@ useEffect(() => {
 const getMovieDetails = async () => {
   const { id } = props.match.params
   const movie = await getMovie(id) 
-  console.log("MOVIE IS" + movie)
+  // console.log("MOVIE IS" + movie)
   setMovie(movie)
     setLoading(false);
   

@@ -43,25 +43,25 @@ const MoviesContextProvider = props => {
   const [state, dispatch] = useReducer(reducer, { movies: []});
   const [state1, dispatch1] = useReducer(reducer1, {  upcomingMovies : []});
   const [state2, dispatch2] = useReducer(reducer2, {  topRated : []});
-  const [authenticated, setAuthenticated] = useState(false);
+  const [ setAuthenticated] = useState(false);
 
   useEffect(() => {
     getMovies().then(result => {
-      console.log("Discover " , result);
+      // console.log("Discover " , result);
       dispatch({ type: "load", payload: {result}});
     })
   },[]);
 
   useEffect(() => {
     getUpcomingMovies().then(result => {
-      console.log("UPcoming " , result);
+      // console.log("UPcoming " , result);
       dispatch1({ type: "load", payload: {result}});
     })
   },[]);
 
   useEffect(() => {
     getTopRated().then(result => {
-      console.log("UPcoming " , result);
+      // console.log("UPcoming " , result);
       dispatch2({ type: "load", payload: {result}});
     })
   },[]);
