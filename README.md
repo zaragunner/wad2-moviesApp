@@ -1,120 +1,87 @@
-# wad2-moviesApp
-
-# Assignment 1 - ReactJS app.
+# Assignment 2 - Web API.
 
 Name: Zara Gunner
 
-## Overview.
+# Note all API work is in https://github.com/zaragunner/wad-api-labs.
+# All API calls were passed to this API through proxy on port 8080.
 
-This repository contains all Web App Development and Agile labs for CA1.
+## Features.
 
+ + router.get('/tmdb/upcoming')
+ + router.get('/tmdb/discover')
+ + router.get('/tmdb/movies/:id')
+ + router.get('/tmdb/toprated')
+ + router.get('/tmdb/tvshows')
+ + router.get('/tmdb/listings')
+ + router.get('/tmdb/tvshows/:id')
 
-### Features.
-+ Upcoming Movies Page
-+ Discover TV Shows Page
-+ Top Rated Movies Page
-+ TV Listings Page
-+ Simple Authentication -> Change button value.
-+ Show / Hide nav routes based on Login Status using ternary operator.
-+ Season Details Page to find details about specific season of a show.
-+ Functionality to add upcoming movies to watchlist. Console logs watchlist.
+## Installation Requirements
 
-## Setup requirements.
-Usual npm install
++ Clone wad2-moviesApp
+`git clone https://github.com/zaragunner/wad2-moviesApp.git`
 
-## API endpoints.
-+ Upcoming Movies  :  
-API call : `https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.REACT_APP_TMDB_KEY}` <br/>
-Description: Returns an array of upcoming movies <br/>
-Path: path="/movies/upcoming" <br/>
++ Clone wad-apiLabs
+`git clone https://github.com/zaragunner/wad-api-labs.git`
 
-+ Discover TV Shows
-API Call : `https://api.themoviedb.org/3/discover/tv?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&include_adult=false&include_video=false&page=3` <br/>
-Description: Returns an array of tv shows.<br/>
-Path:  path="/tv"<br/>
++ open both projects in code editor of your choice
 
-+ TV Show
-API Call : `https://api.themoviedb.org/3/tv/${id}?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US`<br/>
-Description: Returns individual show object.<br/>
-Path: path="/tv/:id"<br/>
++ 'npm install`
 
-+ TV Show Images
-API Call : `https://api.themoviedb.org/3/tv/${id}/images?api_key=${process.env.REACT_APP_TMDB_KEY}`<br/>
-Description: Returns array of images for specified tv show.<br/>
-Path: N/A<br/>
++ `npm run start` on both projects
 
-+ TV Reviews
-API Call : `https://api.themoviedb.org/3/tv/${id}/reviews?api_key=${process.env.REACT_APP_TMDB_KEY}` <br/>
-Description : Returns tv reviews for specified tv show <br/>
-Path: N/A <br/>
+## API Configuration
+.env file structure similar to below
+**ALL mock values
 
-+ Top Rated
-API Call : `https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US` <br/>
-Description: Returns top rated movies in the TMDB database. <br/>
-Path :  path='/toprated' <br/>
-
-+ TV Listings
-API Call :  `https://api.themoviedb.org/3/tv/airing_today?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&include_adult=false&include_video=false&page=1` <br/>
-Description : Returns tv shows that will air today. <br/>
-Path : path="/listings"<br/>
-
-+ Season Details
- API Call : `https://api.themoviedb.org/3/tv/${showid}/season/${seasonno}?api_key=${process.env.REACT_APP_TMDB_KEY}` <br/>
-Description : Returns details of the specified season of the specifed show <br/>
-Path : path = "/tv/:showid/:seasonno" <br/>
+REACT_APP_TMDB_KEY=dede9345567136f8a240398
+FAST_REFRESH=false
+NODE_ENV=development
+PORT=3000
+HOST=localhost
+MONGO_DB=mongodb://localhost:27017/movies_db
+SEED_DB=True
+SECRET=secretsecret
 
 
-## App Design.
-### UI Design.
-<img width="960" alt="image" src="https://user-images.githubusercontent.com/47563922/145612993-d31b8316-50f8-43e5-a224-5ed500a45650.png">
->Shows list of upcoming movies.
+## API Design
+Give an overview of your web API design, perhaps similar to the following: 
 
-<img width="954" alt="image" src="https://user-images.githubusercontent.com/47563922/145613199-62d996dd-118a-4aed-a1e0-154c7c27d2c1.png">
->Shows list of tv shows to discover.
-
-<img width="951" alt="image" src="https://user-images.githubusercontent.com/47563922/145613349-216452db-31d4-427a-a8a3-53dd3674c090.png">
->Shows list of top rated movies in the TMDB database.
-
-<img width="944" alt="image" src="https://user-images.githubusercontent.com/47563922/145613445-6696a656-69f4-4b56-9005-f775be732a42.png">
->Shows list of TV Shows airing today.
-
-<img width="950" alt="image" src="https://user-images.githubusercontent.com/47563922/145613610-9c3888d7-a905-4463-9a04-3002a42801ed.png">
-> SHows indivdual tv show details, with new attributes disaplyed.
-
-<img width="948" alt="image" src="https://user-images.githubusercontent.com/47563922/145613816-bd6f122e-3bd6-4e0b-b936-a124cf14700f.png">
->Shows individual season details, with details displayed for each episode.
-
-### Routing.
-
-+ `<Route exact path="/movies/upcoming" component={UpcomingMoviesPage} />`
-+ `<Route path="/tvreviews/:id" component={TvReviewPage} />`
-+ `<Route exact path="/tv" component={TvList} />`
-+ `<Route path = "/tv/:showid/:seasonno" component={SeasonPage} />`
-+ `<Route exact path="/listings" component={TvListings} />`
-+ `<Route path="/tv/:id" component={TvPage} />`
-+ `<Route exact path='/toprated' component={TopRatedPage} />`
- 
-## Independent learning.
-+ Using state to set the value of the login button to rerender the page once the new value is assigned.
-+ Adding a route with more than one parameter being passed in. "/tv/:showid/:seasonno". This required research into caching the query params, to extract both id values.
+Swagger Documentation (https://app.swaggerhub.com/apis/student2801/movies-api/1.0.0)
 
 
--------------------------------------------
-# Assignment 1 - Agile Software Practice.
+## Security and Authentication
+![image](https://user-images.githubusercontent.com/47563922/147958956-fabd795b-3550-41ed-9759-3182ec626e7f.png)
+Here we can see that every route within the react app is a protected route except for login and signup.
+These routes are being protected using the 'ProtectedRoute' module which was imported.
 
-## Automated Testing.
-
-### Best test cases.
-+  cypress\integration\tvDetails-page.spec.js line 65
-+  cypress\integration\tvDetails-page.spec.js line 75
-+  cypress\integration\login-button.spec.js   line 10
-+  cypress\integration\listing-page.spec.js   line 110
-+  cypress\integration\toprated-page.spec.js  line 107
+This application uses passport to ensure authentication is required to access the API routes.
+<img width="419" alt="image" src="https://user-images.githubusercontent.com/47563922/147959259-14892033-c7c9-4fe0-ad63-73d760d09d77.png">
 
 
-## Code Splitting.
+## Integrating with React App
+I integrated the API with this app, by creating a new API file called 'movie-api'.
+This api file is used to make all the API calls to my local hosted API through proxy on host:8080.
+The API requests that were previously going reactApp -> TDB API, now route through the movie-api, reactApp -> MovieAPI -> TMDBAPI
 
-<img width="237" alt="image" src="https://user-images.githubusercontent.com/47563922/145631298-560be434-942f-45a9-92c7-24ac2476b16f.png">
 
+## Extra features
 
+Instead of just changing the import statement on each file, I decided to store all of the movie lists such as 'Discover', 'Upcoming', and 'TopRated', and the TV Show lists such as 'Discover' and 'TvListings' in their own context files. This allows for the data to be loaded immeaditely on site load up, which helps improve responsiveness when using the application.
 
+## Independent learning
+
+In order to get the parameters passed from the react app -> movie-api -> TMDBapi, in order to return the details from a specific movie / tvshow I had to do some research.
+I had to learn about promises and asynchronous functions.
+To implement this I had to utilise a lot of Reacts core functionalities.
+<img width="258" alt="image" src="https://user-images.githubusercontent.com/47563922/147959994-7caab9d1-5042-45d0-8d87-e6a943968c19.png">
+
+This inloved state management, setting state values.
+Extracting the ID from the properties passed to the page.
+Ensuring the GetMovie() call was called as an asynchronous function, to ensure the page waited for the response.
+And then using the UseEffect() functionality to update the contents of the page once the value for Movie was updated.
+
+This was then implemented for getTvShow also.
+
+I also integrated swagger documentation to my application.
+This was used as more visually appealing way to view the applications API functionality.
+This involved writing a YAML file which was then rendered to be the library.
