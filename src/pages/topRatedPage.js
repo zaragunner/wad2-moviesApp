@@ -1,21 +1,26 @@
 import React from "react";
 import PageTemplate from "../components/templateMovieListPage";
-import { useQuery } from 'react-query'
-import Spinner from '../components/spinner'
-import {getTopRated} from '../api/tmdb-api'
+// import { useQuery } from 'react-query'
+// import Spinner from '../components/spinner'
+
 import AddToFavoritesIcon from '../components/cardIcons/addToFavorites'
+import { useContext} from 'react';
+import { MvContext } from '../contexts/mvContext';
 
 const TopRatedPage = (props) => {
-  const {  data, error, isLoading, isError }  = useQuery('top rated', getTopRated)
+  // const {  data, error, isLoading, isError }  = useQuery('top rated', getTopRated)
 
-  if (isLoading) {
-    return <Spinner />
-  }
+  // if (isLoading) {
+  //   return <Spinner />
+  // }
 
-  if (isError) {
-    return <h1>{error.message}</h1>
-  }  
-  const movies = data.results;
+  // if (isError) {
+  //   return <h1>{error.message}</h1>
+  // }  
+  // const movies = data.results;
+
+  const context = useContext(MvContext)
+  const movies = context.topRated.results
 
   // Redundant, but necessary to avoid app crashing.
   const favorites = movies.filter(m => m.favorite)

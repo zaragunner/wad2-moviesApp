@@ -1,6 +1,6 @@
 import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Redirect, Switch,  } from "react-router-dom";
 // import HomePage from "./pages/homePage";
 // import MoviePage from "./pages/movieDetailsPage";
 // import TvList from "./pages/TvList"
@@ -17,6 +17,13 @@ import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from 'react-query/devtools'
 import MoviesContextProvider from "./contexts/moviesContext";
 import AddMovieReviewPage from './pages/addMovieReviewPage';
+import LoginPage from "./pages/loginPage";
+import AuthProvider from "./contexts/authContext";
+import PrivateRoute from "./privateRoute";
+import AuthHeader from "./authHeader";
+import SignUpPage from "./pages/signUpPage";
+import MovieProvider from "./contexts/mvContext"
+import TvProvider from "./contexts/tvContext"
 
 const TvListings         = lazy(() => import("./pages/tvListingsPage"));
 const TvList             = lazy(() => import( "./pages/TvList"));
@@ -45,30 +52,41 @@ const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
+      <AuthProvider>
       <Suspense fallback={<h1> Loading component </h1>} >
         <SiteHeader />
+        <AuthHeader />
       </Suspense>
+      
+       <MovieProvider>
+         <TvProvider>
         <MoviesContextProvider>
         {" "}
         <Suspense fallback={<h1>Loading page</h1>}>
 <Switch>
-<Route exact path="/reviews/form" component={AddMovieReviewPage} />
-<Route exact path="/movies/upcoming" component={UpcomingMoviesPage} />
-  <Route path="/reviews/:id" component={MovieReviewPage} />
-  <Route path="/tvreviews/:id" component={TvReviewPage} />
-    <Route exact path="/movies/favorites" component={FavoriteMoviesPage} />
-    <Route path="/movies/:id" component={MoviePage} />
-    <Route exact path="/tv" component={TvList} />
-    <Route path = "/tv/:showid/:seasonno" component={SeasonPage} />
-    <Route exact path="/listings" component={TvListings} />
-    <Route path="/tv/:id" component={TvPage} />
-    <Route exact path='/toprated' component={TopRatedPage} />
-    <Route exact path="/" component={HomePage} />
+<PrivateRoute exact path="/reviews/form" component={AddMovieReviewPage} />
+<PrivateRoute exact path="/upcoming" component={UpcomingMoviesPage} />
+<PrivateRoute path="/reviews/:id" component={MovieReviewPage} />
+  <PrivateRoute path="/tvreviews/:id" component={TvReviewPage} />
+  <Route path="/signup" component={SignUpPage} />
+    <PrivateRoute exact path="/movies/favorites" component={FavoriteMoviesPage} />
+    <Route path="/login" component={LoginPage} />
+    <PrivateRoute path="/movies/:id" component={MoviePage} />
+    <PrivateRoute exact path="/tv" component={TvList} />
+    <PrivateRoute path = "/tv/:showid/:seasonno" component={SeasonPage} />
+    <PrivateRoute exact path="/listings" component={TvListings} />
+    <PrivateRoute path="/tv/:id" component={TvPage} />
+    <PrivateRoute exact path='/toprated' component={TopRatedPage} />
+    <PrivateRoute exact path="/" component={HomePage} />
     <Redirect from="*" to="/" />
   </Switch>
   </Suspense>
   </MoviesContextProvider>
+  </TvProvider>
+ </MovieProvider>
+  </AuthProvider>
       </BrowserRouter>
+     
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );

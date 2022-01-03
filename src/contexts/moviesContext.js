@@ -25,7 +25,7 @@ const MoviesContextProvider = (props) => {
       setWatchList([...watchList, movie.id])
      
   }
-  console.log(JSON.stringify(watchList))
+  // console.log(JSON.stringify(watchList))
 
   return (
     <MoviesContext.Provider

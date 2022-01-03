@@ -63,5 +63,4 @@ const TemplateMoviePage = ({ movie, children }) => {
     </>
   );
 };
-
 export default TemplateMoviePage;

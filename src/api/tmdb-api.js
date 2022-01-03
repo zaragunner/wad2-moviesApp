@@ -1,16 +1,16 @@
-export const getMovies = () => {
-  return fetch(
-    `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&include_adult=false&include_video=false`
-  ).then((response) => {
-    if (!response.ok) {
-      throw new Error(response.json().message);
-    }
-    return response.json();
-  })
-  .catch((error) => {
-     throw error
-  });
-};
+// export const getMovies = () => {
+//   return fetch(
+//     `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&include_adult=false&include_video=false`
+//   ).then((response) => {
+//     if (!response.ok) {
+//       throw new Error(response.json().message);
+//     }
+//     return response.json();
+//   })
+//   .catch((error) => {
+//      throw error
+//   });
+// };
   
 export const getMovie = (args) => {
   // console.log(args)
@@ -73,34 +73,20 @@ export const getMovie = (args) => {
       });
   };
 
-  export const getUpcomingMovies = () => {
-    return fetch(
-      `https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.REACT_APP_TMDB_KEY}`
-    )
-    .then((response) =>{
-        if (!response.ok) {
-          throw new Error(response.json().message);
-        }
-        return response.json();
-      })
-      .catch((error) => {
-         throw error
-      });
-    };
 
-    export const getTvShows = () => {
-      return fetch(
-        `https://api.themoviedb.org/3/discover/tv?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&include_adult=false&include_video=false&page=3`
-      ).then((response) => {
-        if (!response.ok) {
-          throw new Error(response.json().message);
-        }
-        return response.json();
-      })
-      .catch((error) => {
-         throw error
-      });
-    };
+    // export const getTvShows = () => {
+    //   return fetch(
+    //     `https://api.themoviedb.org/3/discover/tv?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&include_adult=false&include_video=false&page=3`
+    //   ).then((response) => {
+    //     if (!response.ok) {
+    //       throw new Error(response.json().message);
+    //     }
+    //     return response.json();
+    //   })
+    //   .catch((error) => {
+    //      throw error
+    //   });
+    // };
 
     export const getShow = (args) => {
       // console.log(args)
@@ -162,27 +148,15 @@ export const getMovie = (args) => {
     };
 
 
-    export const getTvListings = () => {
-      return fetch(
-        `https://api.themoviedb.org/3/tv/airing_today?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&include_adult=false&include_video=false&page=1`
-      ).then((response) => {
-        if (!response.ok) {
-          throw new Error(response.json().message);
-        }
-        return response.json();
-      })
-      .catch((error) => {
-         throw error
-      });
-    };
+   
       
 
     export const getEpisodes = (args) => {
-      console.log(args)
+      // console.log(args)
       const [, showPart] = args.queryKey
       const [, , , seasonPart] = args.queryKey
-      console.log(showPart)
-      console.log(seasonPart)
+      // console.log(showPart)
+      // console.log(seasonPart)
       const { showid } = showPart;
       const {seasonno} = seasonPart;
     //   console.log("SHOWID" + showid)
