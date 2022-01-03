@@ -69,7 +69,7 @@ Instead of just changing the import statement on each file, I decided to store a
 
 ## Independent learning
 
-In order to get the parameters passed from the react app -> movie-api -> TMDBapi, in order to return the details from a specific movie / tvshow I had to do some research. <br/>
+In order to get the parameters passed from the react app -> movie-api -> TMDBapi to return the details from a specific movie / tvshow I had to do some research. <br/>
 I had to learn about promises and asynchronous functions.<br/>
 To implement this I had to utilise a lot of Reacts core functionalities.<br/>
 <img width="258" alt="image" src="https://user-images.githubusercontent.com/47563922/147959994-7caab9d1-5042-45d0-8d87-e6a943968c19.png"><br/>
